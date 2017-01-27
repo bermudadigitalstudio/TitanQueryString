@@ -5,7 +5,7 @@ import TitanCore
 class TitanQueryStringTests: XCTestCase {
     func testExample() {
       let path = "/users?verified=true&q=thomas%20catterall"
-      let request: RequestType = Request("GET", path, "", headers: [])
+      let request: RequestType = Request(method: "GET", path: path, body: "", headers: [])
       let parsedQuery = request.query
       guard parsedQuery.count == 2 else {
         XCTFail()
