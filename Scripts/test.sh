@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
-docker build . -t titanquery \
-  && docker run --rm -it titanquery
+set -exo pipefail
+
+docker build -t swift-test -f Dockerfile~test ./
+docker run --rm swift-test || set +x; echo -e "\033[0;31mTests exited with non-zero exit code\033[0m"; tput bel; exit 1

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Replace the following with something like TESTIMPORTMODULE="MyPackageTests"
+TESTIMPORTMODULE="TitanQueryStringTests"
+
 SOURCERY_VERSION="$(sourcery --version)"
 if [ "$SOURCERY_VERSION" != "0.5.3" ]
 then
@@ -7,7 +10,9 @@ then
   exit 1
 fi
 
+set -e
 SCRIPTS="`dirname \"$0\"`"
 TESTS="$SCRIPTS/../Tests"
-sourcery $TESTS $SCRIPTS/LinuxMain.stencil $TESTS --args testimports='@testable import TitanQueryStringTests'
+
+sourcery $TESTS $SCRIPTS/LinuxMain.stencil $TESTS --args testimports="@testable import $TESTIMPORTMODULE"
 mv $TESTS/LinuxMain.generated.swift $TESTS/LinuxMain.swift
