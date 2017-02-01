@@ -9,5 +9,5 @@ fi
 
 SCRIPTS="`dirname \"$0\"`"
 TESTS="$SCRIPTS/../Tests"
-sourcery $TESTS $SCRIPTS/LinuxMain.stencil $TESTS
+sourcery $TESTS $SCRIPTS/LinuxMain.stencil $TESTS --args testimports='@testable import TitanQueryStringTests'
 mv $TESTS/LinuxMain.generated.swift $TESTS/LinuxMain.swift

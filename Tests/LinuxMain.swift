@@ -2,7 +2,7 @@
 // DO NOT EDIT
 
 import XCTest
-
+@testable import TitanQueryStringTests
 
 extension TitanQueryStringTests {
   static var allTests = [
