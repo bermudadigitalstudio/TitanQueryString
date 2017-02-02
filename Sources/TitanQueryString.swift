@@ -1,12 +1,27 @@
 import TitanCore
-import Foundation
+import class Foundation.NSString
 
 public extension RequestType {
   public var queryPairs: [(key: String, value: String)] {
-    guard let queryItems = URLComponents(string: self.path)?.queryItems else {
+    let chars = self.path.characters
+    guard let indexOfQuery = chars.index(of: "?") else {
       return []
     }
-    return queryItems.map { return (key: $0.name, value: $0.value ?? "") }
+    let query = chars.suffix(from: indexOfQuery).dropFirst()
+    let pairs = query.split(separator: "&")
+    return pairs.map { pair -> (key: String, value: String) in
+      let comps = pair.split(separator: "=").map { chars -> String in
+        return String(chars).removingPercentEncoding ?? ""
+      }
+      switch comps.count {
+      case 1:
+        return (key: String(comps[0]), value: "")
+      case 2:
+        return (key: String(comps[0]), value: String(comps[1]))
+      default:
+        return (key: "", value: "")
+      }
+    }
   }
   public var query: [String:String] {
     var query: [String:String] = [:]
