@@ -12,6 +12,8 @@ public extension RequestType {
     return pairs.map { pair -> (key: String, value: String) in
       let comps = pair.split(separator: "=").map { chars -> String in
         return String(chars).removingPercentEncoding ?? ""
+      }.map {
+        return $0.replacingOccurrences(of: "+", with: " ")
       }
       switch comps.count {
       case 1:
