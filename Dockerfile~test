@@ -1,15 +1,11 @@
-FROM swift:3.0
-RUN apt-get update \
-    && apt-get install -y openssl libssl-dev \
-    && rm -r /var/lib/apt/lists/*
+FROM moonshotenergy/swift:4
 
 WORKDIR /code
 
 COPY Package.swift /code/
-RUN swift build || true
+RUN swift package resolve 
 
 COPY ./Sources /code/Sources
-RUN swift build
-
 COPY ./Tests /code/Tests
+
 CMD swift test

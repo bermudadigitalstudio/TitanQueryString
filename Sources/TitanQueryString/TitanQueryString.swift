@@ -1,9 +1,9 @@
 import TitanCore
-import class Foundation.NSString
+import Foundation
 
 public extension RequestType {
   public var queryPairs: [(key: String, value: String)] {
-    let chars = self.path.characters
+    let chars = self.path
     guard let indexOfQuery = chars.index(of: "?") else {
       return []
     }

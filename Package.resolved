@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "TitanCore",
+        "repositoryURL": "https://github.com/bermudadigitalstudio/TitanCore.git",
+        "state": {
+          "branch": null,
+          "revision": "584bfefddc42ec31673ecc78194a170f29578dc5",
+          "version": "0.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
